@@ -1,0 +1,285 @@
+CREATE DATABASE alura --cria o banco de dados
+
+SELECT datname FROM pg_database; --exibe todos os bancos NO dbeaver
+.\ --exibe todos os bancos de dados NO terminal do postgre
+
+DROP DATABASE alura; --deleta o banco de dados
+
+
+--principais tipos de dados utilizado no postgre
+
+--1  integer
+--2  real
+--3  serial
+--4  numeric
+--5  varchar(n)
+--6  char(n)
+--7  text
+--8  boolean
+--9  date
+--10 time
+--11 timestamp
+
+--criação da tabela aluno
+CREATE TABLE aluno
+(
+    id SERIAL,
+    nome  VARCHAR(255),
+    cpf CHAR(11),
+    observacao TEXT,
+    idade INTEGER,
+    dinheiro NUMERIC(10,2),
+    altura REAL,
+    ativo BOOLEAN,
+    data_nascimento DATE,
+    hora_aula TIME,
+    matriculado_em TIMESTAMP
+);
+
+SELECT * FROM aluno;
+
+--inserindo dados na tabela aluno
+
+insert into aluno (nome, cpf, observacao, idade, dinheiro, altura, ativo, data_nascimento, hora_aula, matriculado_em)
+values ('José', '03584714785','Where does it come from?
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.',
+34, 100.50, 1.81, true, '2000-06-18', '17:30:30', '2024-08-06 17:32:45')
+ 
+--alterando dados da tabela
+--primeiro faço um select filtrando pelo id para ter mais segurança
+--importante sempre fazer update filtrando por campos de identificação único
+select * from aluno where id = 1
+update aluno set nome = 'José Junior' where id = 1
+update aluno set idade = 25 where id = 1
+
+--deletando dados da tabela aluno
+select * from aluno where nome = 'José Junior' and id = 1
+delete from aluno where nome = 'José Junior' and id = 1
+
+--inserido somente os nomes na tabela aluno
+insert into aluno (nome) values ('Vinícius Dias')
+insert into aluno (nome) values ('Nico Steppat')
+insert into aluno (nome) values ('João Roberto')
+insert into aluno (nome) values ('Diego')
+insert into aluno (nome) values ('Diogo')
+update aluno set nome = 'Diogo' where nome = 'Diogos'
+
+--fazendo filtros na tabela aluno
+
+select * from aluno where nome != 'Diego' --ambos funciona igual
+select * from aluno where nome <> 'Diego'
+
+--filtro com like 
+select * from aluno where nome like '_iogo' --Nesse filtro do like estou ignorando o que vem primeiro e filtrando somente o trecho que termina com iogo
+--caso o nome terminase com iogos não funcionaria o filtro
+
+select * from aluno where nome like 'Di_go' --Nesse filtro do like estou filtrando as duas primeiras letras que forem Di e que termine com go
+--Nesse caso tem que corresponder esses critérios, todos os nomes que começarem com Di e terminar com go entra no filtro.
+
+select * from aluno where nome not like 'Di_go' --Nesse filtro do not like estou ignorando as duas primeiras letras que forem Di e que termine com go
+--Nesse caso todos os nomes que não iniciar com Di e não terminar go é trazido na busca.
+
+select * from aluno where nome like '%s' --Nesse filtro com o % vindo primeiro eu vou trazer todos os nomes que terminar com a letra s
+
+select * from aluno where nome like 'J%' --Nesse filtro com o % vindo deoius eu vou trazer todos os nomes que iniciar com a letra J
+
+select * from aluno where nome like '% %' --Nesse filtro com dois % e um espaço no meio vou trazer todos os nomes que contem espaços exemplo: João Roberto
+
+select * from aluno where  cpf is not null --Essa consulta retorna os dados de aluno que não está como null o campo cpf na tabela aluno
+select * from aluno where  cpf is null --Essa consulta retorna os dados de alunos que estão como null o campo cpf na tabela aluno
+
+select * from aluno a where idade > 0 --Essa consulta retorna os dados de alunos onde a idade é maior que zero
+select * from aluno a where idade >= 1 --Essa consulta retorna os dados de alunos onde a idade é maior ou igual a 1
+select * from aluno a where idade < 50 --Essa consulta retorna os dados de alunos onde a idade é menor que 50
+select * from aluno a where idade <= 50 --Essa consulta retorna os dados de alunos onde a idade é menor ou igual a 50
+
+select * from aluno where idade between 30 and 50 --Essa consulta retorna os dados de alunos onde a idade é entre 30 e 50 anos
+
+select * from aluno where ativo = true --Essa consulta retorna dados de alunos onde o status ativo esteja como true
+select * from aluno where ativo = false  --Essa consulta retorna dados de alunos onde o status ativo esteja como false 
+select * from aluno where ativo is null  --Essa consulta retorna dados de alunos onde o status ativo esteja como null
+
+select * from aluno where nome like 'Diogo' or nome like 'Nico%' --Essa consulta retorna dados de aluno caso uma ou mais condições atenda os requisitos
+
+select * from aluno where nome like 'Diogo' and nome like '%o' --Essa consulta retorna dados de alunos caso as duas condições seja verdadeira
+
+--Apagando uma tabela do banco de dados
+drop table curso;    --apaga a tabela curso do banco de dados
+
+--Criando uma tabela no banco de dados
+create table curso (
+ 	id SERIAL primary key, --Cria um identificado único para os dados da tabela
+ 	nome varchar(255) not null
+)
+
+CREATE TABLE aluno (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL
+)
+
+INSERT INTO aluno (nome) VALUES ('Diogo')
+INSERT INTO aluno (nome) VALUES ('Vinicius')
+INSERT INTO aluno (nome) VALUES ('Nico')
+
+INSERT INTO curso (nome) VALUES ('HTML')
+INSERT INTO curso (nome) VALUES ('JavaScript')
+INSERT INTO curso (nome) VALUES ('CSS')
+
+
+CREATE TABLE aluno_curso(
+   aluno_id INTEGER,
+   curso_id INTEGER,
+   PRIMARY KEY (aluno_id, curso_id),
+   
+   FOREIGN KEY (aluno_id)
+   REFERENCES aluno (id),
+   
+   FOREIGN KEY (curso_id)
+   REFERENCES curso (id)
+   
+)
+
+SELECT * FROM aluno a 
+SELECT * FROM curso c
+SELECT * FROM aluno_curso 
+
+INSERT INTO aluno_curso (aluno_id, curso_id) VALUES(1,1)
+INSERT INTO aluno_curso (aluno_id, curso_id) VALUES(2,1)
+INSERT INTO aluno_curso (aluno_id, curso_id) VALUES(3,1)
+INSERT INTO aluno_curso (aluno_id, curso_id) VALUES(2,2)
+
+--Fazendo inner join
+
+SELECT aluno.nome AS "Nome do aluno", curso.nome AS "Nome do curso"
+   FROM aluno
+   JOIN aluno_curso ON aluno_curso.aluno_id = aluno.id 
+   JOIN curso ON curso.id = aluno_curso.curso_id 
+   
+
+--Fazendo LEFT JOIN 
+--O LEFT JOIN traz todos os dados da tabela da esquerda que relaciona com a direita e da direita caso nao relacione com a esqueda o campo vem null
+SELECT aluno.nome AS "Nome do aluno", curso.nome AS "Nome do curso"
+   FROM aluno
+  LEFT JOIN aluno_curso ON aluno_curso.aluno_id = aluno.id 
+  LEFT JOIN curso ON curso.id = aluno_curso.curso_id 
+
+
+--Fazendo RIGHT JOIN 
+--O RIGHT JOIN traz todos os dados da tabela da direita e da esquerda que relaciona com a direita caso não o campo vem null
+SELECT aluno.nome AS "Nome do aluno", curso.nome AS "Nome do curso"
+   FROM aluno
+  RIGHT JOIN aluno_curso ON aluno_curso.aluno_id = aluno.id 
+  RIGHT JOIN curso ON curso.id = aluno_curso.curso_id 
+  
+  
+--Fazendo FULL JOIN 
+--O FULL JOIN traz todos os dados da tabela da direita e da esquerda porém se tiver algum dado não relacionado o campo vem null
+SELECT aluno.nome AS "Nome do aluno", curso.nome AS "Nome do curso"
+   FROM aluno
+  FULL JOIN aluno_curso ON aluno_curso.aluno_id = aluno.id 
+  FULL JOIN curso ON curso.id = aluno_curso.curso_id 
+
+
+--Fazendo CROSS JOIN 
+--O CROSS JOIN faz um relacionamento com todos os campos mesmo que eles não se relacione
+SELECT aluno.nome AS "Nome do aluno", curso.nome AS "Nome do curso"
+   FROM aluno
+  CROSS JOIN curso
+
+  --Constraint
+  SELECT * FROM aluno 
+  SELECT * FROM aluno_curso ac 
+  
+  DELETE FROM aluno WHERE id = 1 --Tentando apagar um aluno da tabela aluno que está vinculado a uma outra tabela nesse caso por padrao vai ocorrer uma violção de constraint
+
+--Utilizando o cascade para remoção de dados de tabela que tem constraint
+CREATE TABLE aluno_curso(
+   aluno_id INTEGER,
+   curso_id INTEGER,
+   PRIMARY KEY (aluno_id, curso_id),
+   
+   FOREIGN KEY (aluno_id)
+   REFERENCES aluno (id)
+   ON DELETE CASCADE
+   ON UPDATE CASCADE,
+   
+   FOREIGN KEY (curso_id)
+   REFERENCES curso (id)
+   
+)
+
+SELECT * FROM aluno_curso ac 
+
+UPDATE aluno SET id = 20 WHERE id = 2 --Sem o CASCADE essa deleção não funciona
+
+
+--Ordenando dados de uma tabela
+
+CREATE TABLE funcionarios(
+    id SERIAL PRIMARY KEY,
+    matricula VARCHAR(10),
+    nome VARCHAR(255),
+    sobrenome VARCHAR(255)
+);
+
+
+
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M001', 'Diogo', 'Mascarenhas');
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M002', 'Vinícius', 'Dias');
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M003', 'Nico', 'Steppat');
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M004', 'João', 'Roberto');
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M005', 'Diogo', 'Mascarenhas');
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M006', 'Alberto', 'Martins');
+INSERT INTO funcionarios (matricula, nome, sobrenome) VALUES ('M007', 'Diogo', 'Oliveira');
+
+
+SELECT * FROM funcionarios
+SELECT * FROM funcionarios ORDER BY sobrenome  
+SELECT * FROM funcionarios ORDER BY 3 --É possivel ordernar utilizando o numero da coluna da tabela NO PostgreSQL
+SELECT * FROM funcionarios ORDER BY nome LIMIT 2 --Essa consulta está sendo feita com delimitação para trazer apenas dosi dados
+
+SELECT * FROM funcionarios ORDER BY id LIMIT 4 OFFSET  2 --OFFSET funciona como paginação nesse caso os dados vai ser exibidos após o id 2
+
+
+--Funcoes de agregação
+SELECT count(*),
+		sum(id), 
+		max(id),
+		min(id),
+		round(avg(id),0)
+	FROM funcionarios
+	
+	SELECT nome, 
+		   count(id) 
+		   FROM funcionarios 
+		   GROUP BY nome --Agrupa por nome e sobrenome também se tiver dado repetido só traz um
+		   
+SELECT curso.nome,
+        COUNT (aluno.id)
+    FROM curso
+    LEFT JOIN aluno_curso ON aluno_curso.curso_id = curso.id
+    LEFT JOIN aluno ON aluno.id = aluno_curso.aluno_id
+    --WHERE curso.nome = 'Javascritp'
+GROUP BY 1
+    HAVING COUNT (aluno.id) = 0  --HAVING faz um filtro
+
+		   
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
