@@ -1,3 +1,5 @@
+package atividade1;
+
 public class TestaArray {
     public static void main(String[] args) {
         /*
