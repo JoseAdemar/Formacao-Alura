@@ -1,6 +1,8 @@
+import br.com.alura.screnmatch.calculos.FiltroRecomendacao;
+import br.com.alura.screnmatch.modelos.Epsodio;
 import br.com.alura.screnmatch.modelos.Filme;
 import br.com.alura.screnmatch.modelos.Serie;
-import br.com.alura.screnmatch.modelos.br.com.alura.screnmatch.calculos.CalculadoraDeTempo;
+import br.com.alura.screnmatch.calculos.CalculadoraDeTempo;
 
 public class Principal {
     public static void main(String[] args) throws IllegalAccessException {
@@ -18,7 +20,7 @@ public class Principal {
 
         System.out.println("Soma das avaliações = " + filme.getSomaDasAvaliacoes());
         System.out.println("Quantidade de avaliações =" + filme.getQuantidadeAvaliacoes());
-        System.out.println("Média = " + filme.calculaMedia());
+        System.out.println("Média = " + filme.pegaMedia());
         CalculadoraDeTempo calculadoraDeTempo = new CalculadoraDeTempo();
 
         System.out.println("******************************************");
@@ -42,5 +44,13 @@ public class Principal {
         calculadoraDeTempo.adicionr(filme2);
         calculadoraDeTempo.adicionr(lost);
         System.out.println("Duração total = " + calculadoraDeTempo.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(filme);
+
+        Epsodio epsodio = new Epsodio();
+        epsodio.setNumero(1);
+        epsodio.setTotalAvaliacoes(300);
+        filtro.filtra(epsodio);
     }
 }

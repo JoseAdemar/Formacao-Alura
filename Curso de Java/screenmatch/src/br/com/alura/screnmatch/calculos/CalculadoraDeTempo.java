@@ -1,4 +1,4 @@
-package br.com.alura.screnmatch.modelos.br.com.alura.screnmatch.calculos;
+package br.com.alura.screnmatch.calculos;
 
 import br.com.alura.screnmatch.modelos.Titulo;
 

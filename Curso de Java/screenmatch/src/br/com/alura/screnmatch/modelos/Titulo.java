@@ -20,7 +20,7 @@ public class Titulo {
         quantidadeAvaliacoes++;
     }
 
-    public double calculaMedia() {
+    public double pegaMedia() {
         return somaDasAvaliacoes/quantidadeAvaliacoes;
     }
 
