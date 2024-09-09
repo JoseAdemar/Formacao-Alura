@@ -1,15 +1,17 @@
 let tentativas = 1;
 let listaDeNumerosSorteados = [];
-let limiteNumero = 3;
+let limiteNumero = 100;
 
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto;
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {reate: 1.2});
 }
 
 function exibirMensagemInicial() {
     exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', 'Escolha um número entre 1 e 10');
+    exibirTextoNaTela('h4', 'Maria Zavala, esse Jogo foi feito dedicado a você!');
+    exibirTextoNaTela('p', 'Escolha um número entre 1 e 100');
 }
 
 exibirMensagemInicial();
@@ -34,7 +36,7 @@ function verificarChute() {
     // let chute = document.querySelector('input').value;
     let chute = document.querySelector('.container__input').value;
     if (numeroSecreto == chute) {
-        exibirTextoNaTela('h1', 'Você acertou 🏆');
+        exibirTextoNaTela('h1', 'Você acertou!');
         let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
         exibirTextoNaTela('p', `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}`);
         document.getElementById('reiniciar').removeAttribute('disabled');
