@@ -27,9 +27,7 @@ function fazSorteio() {
     sorteados.push(numero);
   }
 
-  document.querySelector(
-    "#resultado .texto__paragrafo"
-  ).innerHTML = `Números sorteados: ${sorteados}`;
+  document.querySelector("#resultado .texto__paragrafo").innerHTML = `Números sorteados: ${sorteados}`;
 
   desbloquearBotao();
 }
@@ -42,6 +40,7 @@ function limpaCampos() {
     document.querySelector('#quantidade').value = '';
     document.querySelector("#de").value = '';
     document.querySelector("#ate").value = '';
+    document.querySelector("#resultado .texto__paragrafo").innerHTML = 'Números sorteados:  nenhum até agora';
 }
 
 function bloquearBotao() {
