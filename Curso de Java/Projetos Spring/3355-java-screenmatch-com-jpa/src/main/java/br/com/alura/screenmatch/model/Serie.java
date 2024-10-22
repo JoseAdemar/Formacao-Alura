@@ -1,6 +1,7 @@
 package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.traducao.ConsultaMyMemory;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Serie {
     private String poster;
     private String sinopse;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
