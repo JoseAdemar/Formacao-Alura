@@ -1,8 +1,66 @@
+/* Reseta as configurações padrões de CSS*/
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  height: 100vh; /* Define que a altura vai ocupar a altura máxima do dispositivo*/
+  box-sizing: border-box; /* Define que os elementos filhos irão respeitar o tamanho máximo permitido pelo pai*/
   background-color: #090909;
   color: #f6f6f6;
 }
 
-strong {
+.titulo-destaque {
   color: #22d4fd;
+}
+
+.apresentacao {
+  margin: 10% 15%;
+  display: flex; /* Essa propiedade CSS pertence a categoria de flex box que é uma tecnologia css, display flex alinha todos os elementos horizontalmente*/
+  align-items: center; /* Essa propiedade também pertence ao flex box e alinha ao centro os elementos envolvido no container do flex box*/
+  justify-content: space-between; /*Ess propiedade também faz parte do flex box e serve para gerar um espaço entre os elementos*/
+}
+
+.apresentacao__conteudo {
+  width: 615px;
+  display: flex; /* Essa propiedade CSS pertence a categoria de flex box que é uma tecnologia css, display flex alinha todos os elementos horizontalmente*/
+  flex-direction: column; /*propiedade do flex box para alinhar um conjunto de items na vertical*/
+  gap: 40px; /*dá um espaçamento nos elementos do flex box que estão na vertical*/
+}
+
+.apresentacao__conteudo__titulo {
+  font-size: 36px;
+  font-family: "Krona One", sans-serif;
+}
+
+.apresentacao__conteudo__texto {
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400px;
+}
+
+.apresentacao__links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.apresentacao__links__link {
+  background-color: #22d4fd;
+  width: 280px;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 16px;
+  padding: 21.5px 0;
+  text-decoration: none;
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.apresentacao__foto{
+  max-width: 100vh;
+  width: 480px;
 }
