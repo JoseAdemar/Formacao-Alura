@@ -1,8 +1,8 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.endereco.Endereco;
+import med.voll.api.domain.endereco.Endereco;
 
 @Entity(name = "Medico")
 @Table(name = "medicos")
@@ -43,7 +43,7 @@ public class Medico {
             this.telefone = dados.telefone();
         }
         if (dados.endereco() != null) {
-            this.endereco.atualizarInformacaoes(dados.endereco());
+            this.endereco.atualizarInformacoes(dados.endereco());
         }
     }
 
