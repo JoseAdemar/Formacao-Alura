@@ -31,11 +31,13 @@ public class AutenticacaoController {
         try {
             var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
             var authentication = manager.authenticate(authenticationToken);
+
             var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+
             return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
-        } catch (BadCredentialsException e) {
-            System.out.println("Credenciais inválidas: " + dados.login());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
