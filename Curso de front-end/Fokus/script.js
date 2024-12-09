@@ -11,6 +11,8 @@ const musicaComecar = new Audio('/sons/play.wav')
 const musicaPausar = new Audio('/sons/pause.mp3')
 const musicaTempoFinalizado = new Audio('/sons/beep.mp3')
 const startPauseBt = document.querySelector('#start-pause')
+const iniciarOuPausarBt = document.querySelector('#start-pause span')
+let iniciarOuPausarBtIMG = document.querySelector('#start-pause img')
 
 let tempoDecorridoEmSegundos = 5
 let intervaloId = null
@@ -69,7 +71,7 @@ function alterarContexto(contexto) {
 const contagemRegressiva = () => {
     if (tempoDecorridoEmSegundos <= 0){
         zerar()
-        musicaTempoFinalizado.play()
+        //musicaTempoFinalizado.play()
         return
     }
   
@@ -82,15 +84,19 @@ startPauseBt.addEventListener('click', iniciarOuPausar)
 function iniciarOuPausar() {
     if (intervaloId){
         musicaPausar.play()
+        iniciarOuPausarBtIMG.src = "/imagens/play_arrow.png" 
         zerar()
         return
     }
     musicaComecar.play()
     intervaloId = setInterval(contagemRegressiva, 1000)
+    iniciarOuPausarBt.textContent = 'Pausar'
+    iniciarOuPausarBtIMG.src = "/imagens/pause.png" 
 }
 
 function zerar() {
     clearInterval(intervaloId)
     intervaloId = null
+    iniciarOuPausarBt.textContent = 'Começar'
 }
 
