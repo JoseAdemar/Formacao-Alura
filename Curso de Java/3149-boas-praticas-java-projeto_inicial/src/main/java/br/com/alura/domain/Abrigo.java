@@ -21,6 +21,10 @@ public class Abrigo {
         return id;
     }
 
+    public long setId(long id) {
+        return this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
