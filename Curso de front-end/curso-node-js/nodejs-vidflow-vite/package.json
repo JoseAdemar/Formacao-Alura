@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build-preview": "vite build --watch",
     "preview": "vite preview",
-     "api-local": "json-server --watch backend/videos.json",
+    "api-local": "json-server --watch backend/videos.json",
     "lint": "eslint ."
   },
   "devDependencies": {
