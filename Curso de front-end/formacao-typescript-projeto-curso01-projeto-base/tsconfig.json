@@ -1,8 +1,0 @@
-{
-    "compilerOptions": {
-        "target": "ES2022", //Versão do javascript
-        "outDir": "./dist/js/", //Pasta de destino dos arquivos compilados
-        "noEmitOnError": true //Ao identificar um erro, não gerar arquivo js na pasta de destino
-    },
-    "include": ["./src/**/*"] //Local onde é procurado os arquivos .ts para serem compilados para js
-}
