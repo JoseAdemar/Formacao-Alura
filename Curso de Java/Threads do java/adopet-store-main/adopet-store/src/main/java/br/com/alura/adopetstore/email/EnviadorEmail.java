@@ -12,15 +12,16 @@ public class EnviadorEmail {
     @Autowired
     private JavaMailSender emailSender;
 
+    @Async
     public void enviarEmail(String assunto, String destinatario, String textoEmail) {
         try {
 //            Código para envio de email real
-//            var email = new SimpleMailMessage();
-//            email.setFrom("adopet@email.com.br");
-//            email.setSubject(assunto);
-//            email.setTo(destinatario);
-//            email.setText(textoEmail);
-//            emailSender.send(email);
+            var email = new SimpleMailMessage();
+            email.setFrom("email@gmail.com");
+            email.setSubject(assunto);
+            email.setTo(destinatario);
+            email.setText(textoEmail);
+            emailSender.send(email);
             System.out.println("Enviando email!");
             System.out.println(textoEmail);
 
