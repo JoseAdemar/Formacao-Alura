@@ -1,6 +1,7 @@
 package br.com.alura.alugames.modelo
 
 import java.lang.IllegalArgumentException
+import java.time.LocalDate
 import java.util.Scanner
 import kotlin.random.Random
 
@@ -17,6 +18,7 @@ data class Gamer(var nome: String, var email: String) {
         private set
 
     val jogosBuscados = mutableListOf<Jogo?>()
+    val jogosAlugados = mutableListOf<Aluguel>()
 
     init {
         if (this.nome.isNullOrBlank()) {
@@ -48,6 +50,12 @@ data class Gamer(var nome: String, var email: String) {
         } else {
             throw IllegalArgumentException("Email inválido")
         }
+    }
+
+    fun alugaJogo(jogo: Jogo, periodo: Periodo): Aluguel {
+        var aluguel = Aluguel(this, jogo, periodo )
+        jogosAlugados.add(aluguel)
+        return aluguel
     }
 
     companion object {
