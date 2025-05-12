@@ -2,7 +2,11 @@ package br.com.alura.alugames.modelo
 
 import java.math.BigDecimal
 
-data class Jogo(var titulo: String, val capa: String, val preco: Double) {
+data class Jogo(
+    var titulo: String,
+    val capa: String,
+    val preco: Double
+) : Recomendavel {
     public var descricao: String? = "";
 
 
@@ -14,4 +18,13 @@ data class Jogo(var titulo: String, val capa: String, val preco: Double) {
                 "Descrição: $descricao"
 
     }
+
+    private val listaNotas = mutableListOf<Int>()
+    override val media: Double
+        get() = listaNotas.average()
+
+    override fun recomendar(nota: Int) {
+        listaNotas.add(nota)
+    }
+
 }
