@@ -27,8 +27,8 @@ import java.math.BigDecimal;
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
     @NotNull
     @Positive
     private BigDecimal valor;
