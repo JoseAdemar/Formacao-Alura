@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Usuários</title></head>
+<body>
+<h1>Lista de Perfis</h1>
+<ul>
+  <li th:each="usuario : ${usuarios}">
+    <a th:href="@{/perfil/{username}(username=${usuario.username})}"
+       th:text="${usuario.nome}">Nome</a>
+  </li>
+</ul>
+</body>
+</html>

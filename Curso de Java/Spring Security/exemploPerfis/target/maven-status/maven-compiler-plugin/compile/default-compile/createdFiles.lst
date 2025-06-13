@@ -1,0 +1,4 @@
+com\exemplo\perfil\PerfilApplication.class
+com\exemplo\perfil\controller\UsuarioController.class
+com\exemplo\perfil\repository\UsuarioRepository.class
+com\exemplo\perfil\model\Usuario.class

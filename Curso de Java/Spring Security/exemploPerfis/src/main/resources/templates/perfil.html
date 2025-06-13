@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Perfil</title></head>
+<body>
+<h1 th:text="${usuario.nome}"></h1>
+<p>Email: <span th:text="${usuario.email}"></span></p>
+<img th:src="${usuario.fotoPerfilUrl}" width="150" />
+<p><a href="/">Voltar</a></p>
+</body>
+</html>
