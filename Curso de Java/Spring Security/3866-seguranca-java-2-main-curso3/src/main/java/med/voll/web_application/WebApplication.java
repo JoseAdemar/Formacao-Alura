@@ -1,13 +1,13 @@
-package br.com.alurafood.pedidos;
+package med.voll.web_application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PedidosApplication {
+public class WebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PedidosApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 
 }
